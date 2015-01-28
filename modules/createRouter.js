@@ -113,6 +113,7 @@ function hasMatch(routes, route, prevParams, nextParams, prevQuery, nextQuery) {
  *                    the DOM is available, "/" otherwise
  * - scrollBehavior   The scroll behavior to use. Defaults to ImitateBrowserBehavior
  *                    when the DOM is available, null otherwise
+ * - expectFactory    A boolean to disable wrapping of handlers. Defaults to false.
  * - onError          A function that is used to handle errors
  * - onAbort          A function that is used to handle aborted transitions
  *
@@ -128,6 +129,7 @@ function createRouter(options) {
   var mountedComponents = [];
   var location = options.location || DEFAULT_LOCATION;
   var scrollBehavior = options.scrollBehavior || DEFAULT_SCROLL_BEHAVIOR;
+  var expectFactory = options.expectFactory === true;
   var state = {};
   var nextState = {};
   var pendingTransition = null;
@@ -510,7 +512,12 @@ function createRouter(options) {
 
     render: function () {
       var route = this.getRouteAtDepth(0);
-      return route ? React.createElement(route.handler, this.props) : null;
+      if (route) {
+        return expectFactory ?
+          route.handler(this.props) :
+          React.createElement(route.handler, this.props);
+      }
+      return null;
     }
 
   });

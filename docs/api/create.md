@@ -24,6 +24,10 @@ The location to use.
 
 The scroll behavior to use.
 
+### expectFactory
+
+When enabled, this will disable auto-wrapping of handlers in ReactElements and expect you to provide your own ReactElement objects.
+
 Methods
 -------
 
