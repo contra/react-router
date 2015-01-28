@@ -40,7 +40,7 @@ var RouteHandlerMixin = {
 
   createChildRouteHandler: function (props) {
     var route = this.context.getRouteAtDepth(this.getRouteDepth());
-    return route ? React.createElement(route.handler, assign({}, props || this.props, { ref: REF_NAME })) : null;
+    return route ? route.handler(assign({}, props || this.props, { ref: REF_NAME })) : null;
   }
 
 };
