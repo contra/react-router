@@ -32,12 +32,12 @@ assign(Transition.prototype, {
       return function (error) {
         if (error || self.abortReason) {
           callback(error);
-        } else if (route.handler.willTransitionFrom) {
+        } else if (route.handler.type.willTransitionFrom) {
           try {
-            route.handler.willTransitionFrom(self, components[index], callback);
+            route.handler.type.willTransitionFrom(self, components[index], callback);
 
             // If there is no callback in the argument list, call it automatically.
-            if (route.handler.willTransitionFrom.length < 3)
+            if (route.handler.type.willTransitionFrom.length < 3)
               callback();
           } catch (e) {
             callback(e);
@@ -58,12 +58,12 @@ assign(Transition.prototype, {
       return function (error) {
         if (error || self.abortReason) {
           callback(error);
-        } else if (route.handler.willTransitionTo) {
+        } else if (route.handler.type.willTransitionTo) {
           try {
-            route.handler.willTransitionTo(self, params, query, callback);
+            route.handler.type.willTransitionTo(self, params, query, callback);
 
             // If there is no callback in the argument list, call it automatically.
-            if (route.handler.willTransitionTo.length < 4)
+            if (route.handler.type.willTransitionTo.length < 4)
               callback();
           } catch (e) {
             callback(e);
