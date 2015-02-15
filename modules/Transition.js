@@ -33,12 +33,12 @@ Transition.from = function (transition, routes, components, callback) {
     return function (error) {
       if (error || transition.abortReason) {
         callback(error);
-      } else if (route.type.willTransitionFrom) {
+      } else if (route.willTransitionFrom) {
         try {
-          route.type.willTransitionFrom(transition, components[index], callback);
+          route.willTransitionFrom(transition, components[index], callback);
 
           // If there is no callback in the argument list, call it automatically.
-          if (route.type.willTransitionFrom.length < 3)
+          if (route.willTransitionFrom.length < 3)
             callback();
         } catch (e) {
           callback(e);
@@ -55,12 +55,12 @@ Transition.to = function (transition, routes, params, query, callback) {
     return function (error) {
       if (error || transition.abortReason) {
         callback(error);
-      } else if (route.type.willTransitionTo) {
+      } else if (route.willTransitionTo) {
         try {
-          route.type.willTransitionTo(transition, params, query, callback);
+          route.willTransitionTo(transition, params, query, callback);
 
           // If there is no callback in the argument list, call it automatically.
-          if (route.type.willTransitionTo.length < 4)
+          if (route.willTransitionTo.length < 4)
             callback();
         } catch (e) {
           callback(e);
