@@ -29,8 +29,8 @@ function createRoute(element, parentRoute, namedRoutes) {
     props.path = props.path || props.from || '*';
   } else {
     options.handler = props.handler;
-    options.willTransitionTo = props.handler && props.handler.willTransitionTo;
-    options.willTransitionFrom = props.handler && props.handler.willTransitionFrom;
+    options.willTransitionTo = props.handler && props.handler.type.willTransitionTo;
+    options.willTransitionFrom = props.handler && props.handler.type.willTransitionFrom;
   }
 
   var parentPath = (parentRoute && parentRoute.path) || '/';
